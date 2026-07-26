@@ -67,13 +67,13 @@ const cases: CrimeCase[] = [
 ];
 
 const navItems: { id: Page; icon: string; label: string }[] = [
-  { id: "command",   icon: "◈",  label: "Command Center" },
-  { id: "vault",     icon: "▣",  label: "Case Vault" },
-  { id: "board",     icon: "◫",  label: "Investigation Board" },
-  { id: "patterns",  icon: "⌁",  label: "Pattern & MO Lab" },
-  { id: "map",       icon: "⌖",  label: "Geo Crime Map" },
-  { id: "assistant", icon: "✦",  label: "AI Assistant" },
-  { id: "reports",   icon: "▤",  label: "Reports & Audit" },
+  { id: "command", icon: "◈", label: "Command Center" },
+  { id: "vault", icon: "▣", label: "Case Vault" },
+  { id: "board", icon: "◫", label: "Investigation Board" },
+  { id: "patterns", icon: "⌁", label: "Pattern & MO Lab" },
+  { id: "map", icon: "⌖", label: "Geo Crime Map" },
+  { id: "assistant", icon: "✦", label: "AI Assistant" },
+  { id: "reports", icon: "▤", label: "Reports & Audit" },
 ];
 
 const PROMPT_CHIPS = [
@@ -105,24 +105,24 @@ function App() {
       .finally(() => setCheckingAuth(false));
   }, []);
 
-  const [activePage, setActivePage]     = useState<Page>("command");
+  const [activePage, setActivePage] = useState<Page>("command");
   const [selectedCase, setSelectedCase] = useState<CrimeCase>(cases[0]);
-  const [search, setSearch]             = useState("");
-  const [files, setFiles]               = useState<File[]>([]);
-  const [datasets, setDatasets]         = useState<Dataset[]>([]);
-  const dataset     = datasets[0] || null;
+  const [search, setSearch] = useState("");
+  const [files, setFiles] = useState<File[]>([]);
+  const [datasets, setDatasets] = useState<Dataset[]>([]);
+  const dataset = datasets[0] || null;
   const totalRecords = datasets.reduce((t, d) => t + d.totalRecords, 0);
   const [uploadMessage, setUploadMessage] = useState("");
-  const [uploading, setUploading]         = useState(false);
-  const [question, setQuestion]           = useState("");
-  const [aiLoading, setAiLoading]         = useState(false);
-  const [copiedId, setCopiedId]           = useState<string | null>(null);
-  const [messages, setMessages]           = useState<ChatMessage[]>([]);
-  const [profile, setProfile]             = useState<Profile | null>(null);
-  const [showProfile, setShowProfile]     = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [question, setQuestion] = useState("");
+  const [aiLoading, setAiLoading] = useState(false);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [profile, setProfile] = useState<Profile | null>(null);
+  const [showProfile, setShowProfile] = useState(false);
 
-  const chatEndRef   = useRef<HTMLDivElement>(null);
-  const textareaRef  = useRef<HTMLTextAreaElement>(null);
+  const chatEndRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   // Auto-scroll chat to bottom
   useEffect(() => {
@@ -134,7 +134,7 @@ function App() {
   );
 
   const loadProfile = async () => {
-    const r = await fetch("http://localhost:5000/api/analytics/profile");
+    const r = await fetch("/api/analytics/profile");
     if (r.ok) setProfile((await r.json()).profile);
   };
 
@@ -144,7 +144,7 @@ function App() {
     files.forEach((f) => formData.append("files", f));
     try {
       setUploading(true);
-      const r = await fetch("http://localhost:5000/api/datasets/upload", { method: "POST", body: formData });
+      const r = await fetch("/api/datasets/upload", { method: "POST", body: formData });
       const result = await r.json();
       if (!r.ok) throw new Error(result.message);
       setDatasets(result.datasets);
