@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, useMemo } from "react";
-import ForceGraph2D, { ForceGraphMethods } from "react-force-graph-2d";
+import ForceGraph2D from "react-force-graph-2d";
 import { BarChart, Bar, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer, Cell } from "recharts";
 import "./PatternLab.css";
 
@@ -27,8 +27,8 @@ export default function PatternLab() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [hoverNode, setHoverNode] = useState<Node | null>(null);
-  const graphRef = useRef<ForceGraphMethods>();
-  
+  const graphRef = useRef<any>(null);
+
   // Container dimensions
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
@@ -152,11 +152,11 @@ export default function PatternLab() {
             d3AlphaDecay={0.05}
             d3VelocityDecay={0.15}
             onEngineStop={() => {
-               if (graphRef.current) graphRef.current.zoomToFit(400, 20);
+              if (graphRef.current) graphRef.current.zoomToFit(400, 20);
             }}
           />
           {hoverNode && (
-            <div className="node-tooltip" style={{ left: hoverNode.x ? hoverNode.x + dimensions.width/2 : 0, top: hoverNode.y ? hoverNode.y + dimensions.height/2 : 0 }}>
+            <div className="node-tooltip" style={{ left: hoverNode.x ? hoverNode.x + dimensions.width / 2 : 0, top: hoverNode.y ? hoverNode.y + dimensions.height / 2 : 0 }}>
               <strong>{hoverNode.label}</strong>
               <br />
               <small>Connections: {hoverNode.val}</small>
@@ -186,7 +186,7 @@ export default function PatternLab() {
               <BarChart data={stats?.topEntities || []} layout="vertical" margin={{ top: 0, right: 20, left: 0, bottom: 0 }}>
                 <XAxis type="number" hide />
                 <YAxis dataKey="label" type="category" width={100} tick={{ fontSize: 11, fill: "rgba(154,177,206,0.9)" }} axisLine={false} tickLine={false} />
-                <RechartsTooltip 
+                <RechartsTooltip
                   cursor={{ fill: "rgba(82,223,192,0.1)" }}
                   contentStyle={{ backgroundColor: "rgba(10,20,42,0.9)", border: "1px solid rgba(82,223,192,0.3)", borderRadius: "8px", color: "#fff", fontSize: 12 }}
                   itemStyle={{ color: "#52dfc0" }}
