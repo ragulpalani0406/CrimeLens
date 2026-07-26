@@ -1,0 +1,94 @@
+/* ─── Karnataka Map Panel ────────────────────────────────────────────────────── */
+.karnataka-map-panel {
+  padding: 24px;
+  border: 1px solid rgba(82,223,192,0.13);
+  border-radius: 14px;
+  background: rgba(10,22,42,0.55);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 4px 32px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* ─── Map Heading ────────────────────────────────────────────────────────────── */
+.map-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+.map-heading h1 {
+  margin: 4px 0;
+  color: #f5f7ff;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.map-heading p {
+  margin: 0;
+  color: rgba(159,170,204,0.8);
+  font-size: 12px;
+}
+
+/* eyebrow override to preserve KarnatakaMap.css specificity */
+.karnataka-map-panel .eyebrow {
+  color: #52dfc0 !important;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ─── Map Container ──────────────────────────────────────────────────────────── */
+.karnataka-map {
+  height: 590px;
+  width: 100%;
+  border: 1px solid rgba(42,58,105,0.6);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+}
+
+/* ─── Legend ─────────────────────────────────────────────────────────────────── */
+.map-legend {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  color: rgba(220,228,255,0.9);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.map-legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border: 1px solid rgba(82,223,192,0.13);
+  border-radius: 20px;
+  background: rgba(4,11,21,0.4);
+  backdrop-filter: blur(8px);
+}
+
+.map-legend i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.map-legend .high   { background: #ff5d73; box-shadow: 0 0 8px rgba(255,93,115,0.5); }
+.map-legend .medium { background: #ffb454; box-shadow: 0 0 8px rgba(255,180,84,0.4); }
+.map-legend .low    { background: #56d8ba; box-shadow: 0 0 8px rgba(86,216,186,0.4); }
+
+/* ─── Error ──────────────────────────────────────────────────────────────────── */
+.map-error {
+  color: rgba(255,154,168,0.9);
+  font-size: 13px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255,107,115,0.2);
+  border-radius: 8px;
+  background: rgba(50,14,18,0.4);
+  margin-bottom: 12px;
+}

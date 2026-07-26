@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* ─── Login Page ─────────────────────────────────────────────────────────────── */
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  color: #eef5ff;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #060e1b;
+}
+
+/* Animated aurora background */
+.login-page::before,
+.login-page::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: auroraFloat 15s ease-in-out infinite alternate;
+}
+
+.login-page::before {
+  width: 700px;
+  height: 700px;
+  top: -15%;
+  left: -10%;
+  background: radial-gradient(circle, rgba(82,223,192,0.12) 0%, transparent 65%);
+  animation-duration: 18s;
+}
+
+.login-page::after {
+  width: 600px;
+  height: 600px;
+  bottom: -15%;
+  right: -10%;
+  background: radial-gradient(circle, rgba(111,168,245,0.10) 0%, transparent 65%);
+  animation-duration: 22s;
+  animation-delay: -6s;
+}
+
+@keyframes auroraFloat {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(40px, -30px) scale(1.1); }
+}
+
+/* ─── Login Card ─────────────────────────────────────────────────────────────── */
+.login-card {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 470px);
+  padding: 44px;
+  border: 1px solid rgba(82,223,192,0.18);
+  border-radius: 24px;
+  background: rgba(8,18,38,0.72);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow:
+    0 24px 80px rgba(0,0,0,0.5),
+    0 0 0 1px rgba(255,255,255,0.04) inset,
+    0 1px 0 rgba(82,223,192,0.1) inset;
+}
+
+/* ─── Brand ──────────────────────────────────────────────────────────────────── */
+.login-brand { margin-bottom: 32px; }
+
+.brand-mark {
+  color: #52dfc0;
+  font-size: 32px;
+  filter: drop-shadow(0 0 16px rgba(82,223,192,0.55));
+  animation: brandGlow 3s ease-in-out infinite;
+}
+
+@keyframes brandGlow {
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(82,223,192,0.4)); }
+  50%       { filter: drop-shadow(0 0 22px rgba(82,223,192,0.75)); }
+}
+
+.eyebrow {
+  margin: 12px 0 6px;
+  color: #52dfc0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.login-brand h1 {
+  margin: 0;
+  font-size: 44px;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  background: linear-gradient(135deg, #eef5ff 30%, #52dfc0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.login-card h2 {
+  margin: 0 0 22px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #eef5ff;
+}
+
+/* ─── Auth Tabs ──────────────────────────────────────────────────────────────── */
+.auth-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 26px;
+  padding: 4px;
+  background: rgba(4,11,21,0.5);
+  border-radius: 12px;
+  border: 1px solid rgba(82,223,192,0.1);
+}
+
+.auth-card button,
+.login-card button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.auth-tab {
+  flex: 1;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: rgba(169,189,213,0.7);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.auth-tab.active {
+  background: linear-gradient(135deg, rgba(82,223,192,0.2), rgba(82,223,192,0.1));
+  border: 1px solid rgba(82,223,192,0.3);
+  color: #52dfc0;
+  font-weight: 700;
+}
+
+/* ─── Form ───────────────────────────────────────────────────────────────────── */
+.auth-form {
+  display: grid;
+  gap: 18px;
+}
+
+.auth-form label {
+  display: grid;
+  gap: 8px;
+  color: rgba(169,189,213,0.9);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.auth-form input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid rgba(82,223,192,0.15);
+  border-radius: 12px;
+  outline: none;
+  background: rgba(4,11,21,0.6);
+  backdrop-filter: blur(8px);
+  color: #eef5ff;
+  font-size: 15px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.auth-form input:focus {
+  border-color: rgba(82,223,192,0.5);
+  box-shadow: 0 0 0 3px rgba(82,223,192,0.12);
+}
+
+.auth-form input::placeholder { color: rgba(77,106,138,0.8); }
+
+/* ─── Primary Button ─────────────────────────────────────────────────────────── */
+.primary-button {
+  width: 100%;
+  padding: 15px;
+  border: 0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #52dfc0, #3eb89e);
+  color: #04111f;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  transition: all 0.2s;
+  box-shadow: 0 0 24px rgba(82,223,192,0.3);
+}
+
+.primary-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 32px rgba(82,223,192,0.5);
+}
+
+.primary-button:disabled { cursor: wait; opacity: 0.6; transform: none; }
+
+/* ─── Auth Message ───────────────────────────────────────────────────────────── */
+.auth-message {
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: rgba(91,36,51,0.5);
+  border: 1px solid rgba(255,107,115,0.25);
+  color: #ffb6c1;
+  font-size: 13px;
+}
+
+/* ─── Auth Switch ────────────────────────────────────────────────────────────── */
+.auth-switch {
+  margin: 24px 0 0;
+  color: rgba(169,189,213,0.7);
+  text-align: center;
+  font-size: 14px;
+}
+
+.auth-switch button {
+  border: 0;
+  background: transparent;
+  color: #52dfc0;
+  font-weight: 700;
+  font-size: 14px;
+  transition: all 0.15s;
+}
+
+.auth-switch button:hover { color: #7eecd4; }
+
+/* ─── Responsive ─────────────────────────────────────────────────────────────── */
+@media (max-width: 560px) {
+  .login-card { padding: 28px 22px; }
+  .login-brand h1 { font-size: 36px; }
+}

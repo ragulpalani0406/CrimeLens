@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+}
+
+model User {
+  id           String     @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  email        String     @unique
+  passwordHash String
+  role         String     @default("ANALYST")
+  avatarUrl    String?
+  language     String     @default("en")
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  datasets  Dataset[]
+  reports   Report[]
+  auditLogs AuditLog[]
+}
+
+model Dataset {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  fileName  String
+  format    String
+  rowCount  Int      @default(0)
+  createdAt DateTime @default(now())
+
+  ownerId String @db.ObjectId
+  owner   User   @relation(fields: [ownerId], references: [id])
+}
+
+model Report {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  createdAt DateTime @default(now())
+
+  ownerId String @db.ObjectId
+  owner   User   @relation(fields: [ownerId], references: [id])
+}
+
+model AuditLog {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  action    String
+  details   String?
+  createdAt DateTime @default(now())
+
+  ownerId String @db.ObjectId
+  owner   User   @relation(fields: [ownerId], references: [id])
+}
