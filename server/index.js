@@ -485,7 +485,7 @@ app.get("/api/analytics/network", (req, res) => {
       const crimeType = getValue(row, ["crime_type", "crimetype", "crime type", "crime", "category", "offence", "section"]);
 
       const caseNode = addNode(caseId, `Case: ${caseId}`, 1, 2);
-      
+
       if (person) {
         const pNode = addNode(`PERSON-${person}`, person, 2, 1);
         addLink(caseNode, pNode);
@@ -498,7 +498,7 @@ app.get("/api/analytics/network", (req, res) => {
         const cNode = addNode(`CRIME-${crimeType}`, crimeType, 4, 1);
         addLink(caseNode, cNode);
       }
-      
+
       // Also link person to location directly to show clusters
       if (person && location) {
         addLink(`PERSON-${person}`, `LOC-${location}`);
@@ -526,7 +526,7 @@ if (process.env.NODE_ENV === "production") {
   const clientDistPath = path.join(__dirname, "../client/dist");
   app.use(express.static(clientDistPath));
 
-  app.get("*", (req, res) => {
+  app.get("/{*splat}", (req, res) => {
     res.sendFile(path.join(clientDistPath, "index.html"));
   });
 }
